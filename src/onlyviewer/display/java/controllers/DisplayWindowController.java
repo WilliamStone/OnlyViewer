@@ -2,7 +2,9 @@ package onlyviewer.display.java.controllers;
 
 import com.jfoenix.controls.JFXSnackbar;
 import javafx.scene.transform.Scale;
+import lombok.SneakyThrows;
 import onlyviewer.display.DisplayWindow;
+import onlyviewer.display.java.model.ImageUtil;
 import onlyviewer.display.java.model.Ocr;
 import onlyviewer.home.java.components.CustomDialog;
 import onlyviewer.home.java.components.DialogType;
@@ -30,13 +32,9 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * 展示窗口的控制器
@@ -101,7 +99,9 @@ public class DisplayWindowController extends AbstractController implements Initi
         }
 
         this.imageModel = im;
-        this.image = new Image(im.getImageFile().toURI().toString());
+        // 在这里对文件类型和字节流做处理
+        this.image = ImageUtil.createImage(im);
+
         this.imageView.setImage(image);
         this.sw = new SwitchPics(imageModelArrayList);
         imageView.setPreserveRatio(true);

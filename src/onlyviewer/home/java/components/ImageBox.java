@@ -22,6 +22,8 @@ import lombok.Setter;
 
 import java.io.IOException;
 
+import static onlyviewer.display.java.model.ImageUtil.createImage;
+
 
 /**
  * 主窗口的缩略图单元。
@@ -48,12 +50,10 @@ public class ImageBox extends VBox {
      */
     public ImageBox(ImageModel im) {
         this.im = im;
-        ImageView2 imageView = new ImageView2(new Image(im.getImageFile().toURI().toString(),
-                100,
-                100,
-                true,
-                true,
-                true));
+
+        Image image = createImage(im, 100, 100, true,
+                true, true);
+        ImageView2 imageView = new ImageView2(image);
         this.imageView2 = imageView;                                //图片
         WhiteRippler riv = new WhiteRippler(imageView);     //一个水波纹点击效果的包装
         ImageLabel imageLabel = new ImageLabel(im.getImageName());  //标签 - 文件名

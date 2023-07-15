@@ -21,13 +21,13 @@ public class ImageListModel {
     public static boolean isSupportedImg(String fileName) {
         return fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") ||
                 fileName.endsWith(".png") || fileName.endsWith(".gif") ||
-                fileName.endsWith(".bmp");
+                fileName.endsWith(".bmp") || fileName.endsWith(".dat");
     }
 
     // 初始化图片列表
     public static ArrayList<ImageModel> initImgList(String path) throws IOException {
         ArrayList<ImageModel> imgList = new ArrayList<>(); // 默认根据name进行排序
-        if (path.equals("") || path == null)
+        if (path == null || path.equals(""))
             return null;
         Files.walkFileTree(Paths.get(path), new SimpleFileVisitor<Path>() {
             @Override
